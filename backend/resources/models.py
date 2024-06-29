@@ -8,7 +8,7 @@ class Resource(models.Model):
     workspace = models.OneToOneField(WorkSpace, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return self.name

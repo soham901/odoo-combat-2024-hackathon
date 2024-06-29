@@ -6,8 +6,8 @@ import Hero from "./hero";
 export default function Workspaces() {
   return (
     <Wrapper className="space-y-4">
-      <Hero />
-      {/* <Title>Workspaces that inspire</Title> */}
+      {/* <Hero /> */}
+      <Title>Workspaces that inspire</Title>
       <List />
     </Wrapper>
   );

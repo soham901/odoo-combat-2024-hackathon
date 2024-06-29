@@ -25,7 +25,7 @@ export default function ActiveLink({
       href={href}
       className={cn(
         `transition-colors hover:text-primary uppercase text-nowrap ${
-          isActive ? "text-primary font-bold" : "text-foreground font-medium"
+          isActive ? "text-primary font-medium" : "text-foreground"
         }`,
         className
       )}

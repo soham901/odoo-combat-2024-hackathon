@@ -1,6 +1,6 @@
 "use client";
 
-import { publicRoutes } from "@/config/navbar";
+import { publicRoutes } from "@/configs/navbar";
 
 import Link from "next/link";
 import { Menu, Package2 } from "lucide-react";
@@ -8,7 +8,7 @@ import { Menu, Package2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import ActiveLink from "./active-link";
-import { title } from "@/config/site";
+import { title } from "@/configs/site";
 import { useState } from "react";
 
 export default function MobileNav() {
