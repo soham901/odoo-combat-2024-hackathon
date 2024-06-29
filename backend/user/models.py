@@ -89,11 +89,22 @@ class User(AbstractBaseUser):
             print("ERROR:", e)
         return None
 
+    def get_customer(self):
+        from customer.models import Customer
+
+        try:
+            return Customer.objects.get(user=self)
+        except Exception as e:
+            print("ERROR:", e)
+        return None
+
     @property
     def role(self):
         if self.is_staff or self.is_admin:
             return Role.ADMIN
         elif self.get_owner():
             return Role.OWNER
+        elif self.get_customer():
+            return Role.CUSTOMER
         else:
-            return None
+            return Role.USER

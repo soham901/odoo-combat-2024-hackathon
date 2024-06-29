@@ -1,5 +1,6 @@
 from django.db import models
 
+from owner.models import Owner
 from locations.models import City, State
 
 
@@ -12,6 +13,7 @@ class Amenity(models.Model):
 
 
 class WorkSpace(models.Model):
+    owner = models.OneToOneField(Owner, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=255)
     tagline = models.CharField(max_length=96)
     amenities = models.ManyToManyField(Amenity)
