@@ -5,8 +5,10 @@ from .validators import username_validator, clean_username
 
 
 class Role(models.TextChoices):
+    USER = "user", "User"
     ADMIN = "admin", "Admin"
     OWNER = "owner", "Owner"
+    CUSTOMER = "customer", "Customer"
 
 
 class UserManager(BaseUserManager):
@@ -79,12 +81,12 @@ class User(AbstractBaseUser):
         return self.is_admin
 
     def get_owner(self):
-        # from owner.models import Owner
+        from owner.models import Owner
 
-        # try:
-        #     return Owner.objects.get(user=self)
-        # except Exception as e:
-        #     print("ERROR:", e)
+        try:
+            return Owner.objects.get(user=self)
+        except Exception as e:
+            print("ERROR:", e)
         return None
 
     @property

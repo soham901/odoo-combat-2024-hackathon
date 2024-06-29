@@ -1,5 +1,6 @@
 from django.db import models
-from django.conf import settings
+
+from customer.models import Customer
 
 
 class Resource(models.Model):
@@ -12,9 +13,7 @@ class Resource(models.Model):
 
 
 class ResourceReservation(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True
-    )
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()

@@ -1,12 +1,11 @@
 from django.db import models
-from django.conf import settings
+
 from workspaces.models import WorkSpace
+from customer.models import Customer
 
 
 class Booking(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True
-    )
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
     workspace = models.ForeignKey(WorkSpace, on_delete=models.CASCADE, null=True)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
