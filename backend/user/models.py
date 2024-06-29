@@ -108,3 +108,16 @@ class User(AbstractBaseUser):
             return Role.CUSTOMER
         else:
             return Role.USER
+
+
+class BaseProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=500, blank=True)
+    location = models.CharField(max_length=32, blank=True)
+    organization = models.CharField(max_length=64, blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        abstract = True
