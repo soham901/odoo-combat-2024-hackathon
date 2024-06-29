@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 from owner.models import Owner
 from locations.models import City, State
@@ -13,8 +14,9 @@ class Amenity(models.Model):
 
 
 class WorkSpace(models.Model):
-    owner = models.OneToOneField(Owner, on_delete=models.CASCADE, null=True)
+    owner = models.ForeignKey(Owner, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, null=True, blank=True)
     tagline = models.CharField(max_length=96)
     amenities = models.ManyToManyField(Amenity)
     location = models.CharField(max_length=255, null=True)
@@ -28,6 +30,10 @@ class WorkSpace(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class WorkSpaceImage(models.Model):

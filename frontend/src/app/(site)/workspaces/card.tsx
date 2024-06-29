@@ -18,9 +18,11 @@ export default function Card(props: Props) {
           height={900}
           className="w-full h-full aspect-video object-cover"
         />
-        <SCard.CardTitle className="p-3 pb-0">{props.name}</SCard.CardTitle>
-        <div className="p-3 overflow-hidden">
-          <div className="line-clamp-4">{props.description}</div>
+        <SCard.CardTitle className="p-3">
+          <div className="line-clamp-1">{props.name}</div>
+        </SCard.CardTitle>
+        <div className="p-3 pb-0 overflow-hidden">
+          <div className="line-clamp-4">{props.tagline}</div>
         </div>
       </SCard.CardHeader>
       <SCard.CardFooter className="flex gap-2 justify-between py-1 px-4 bg-muted">

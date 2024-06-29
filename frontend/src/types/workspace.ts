@@ -1,8 +1,9 @@
 export type WorkSpace = {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  image: string;
+  id: number;
   city: string;
+  state: string;
+  image: string;
+  name: string;
+  tagline: string;
+  slug: string;
 };

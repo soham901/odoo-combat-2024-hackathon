@@ -1,11 +1,11 @@
 export enum Roles {
   USER = "user",
-  DONOR = "donor",
-  NONPROFIT = "nonprofit",
+  OWNER = "owner",
+  CUSTOMER = "customer",
   ADMIN = "admin",
 }
 
-export type Role = "admin" | "donor" | "nonprofit" | "user";
+export type Role = "admin" | "customer" | "owner" | "user";
 
 export interface IUser {
   id: number;
