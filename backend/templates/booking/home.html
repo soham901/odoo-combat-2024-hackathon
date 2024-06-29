@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+  <h1>Create a Booking</h1>
+  <form method="post">
+    {% csrf_token %} {% for field in form %}
+    <div class="form-group">
+      {{ field.label_tag }} {{ field }} {% if field.errors %}
+      <div class="alert alert-danger">{{ field.errors }}</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Create Booking</button>
+  </form>
+
+  <h2 class="mt-4">Your Bookings</h2>
+  {% if bookings %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Workspace</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings %}
+      <tr>
+        <td>{{ booking.workspace.name }}</td>
+        <td>{{ booking.start_time }}</td>
+        <td>{{ booking.end_time }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>You have no bookings yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

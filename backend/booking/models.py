@@ -1,11 +1,11 @@
 from django.db import models
 
 from workspaces.models import WorkSpace
-from customer.models import Customer
+from user.models import User
 
 
 class Booking(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
     workspace = models.ForeignKey(WorkSpace, on_delete=models.CASCADE)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
@@ -20,5 +20,5 @@ class Booking(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.customer.user.username} - {self.workspace.name}"
+    # def __str__(self):
+    #     return f"{self.user.username} - {self.workspace.name}"

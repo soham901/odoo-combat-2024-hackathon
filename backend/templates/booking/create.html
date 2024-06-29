@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+  <h2>Create Booking</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="id_customer" class="form-label">Customer</label>
+      {{ form.customer }}
+    </div>
+    <div class="mb-3">
+      <label for="id_workspace" class="form-label">WorkSpace</label>
+      {{ form.workspace }}
+    </div>
+    <div class="mb-3">
+      <label for="id_start_time" class="form-label">Start Time</label>
+      {{ form.start_time }}
+    </div>
+    <div class="mb-3">
+      <label for="id_end_time" class="form-label">End Time</label>
+      {{ form.end_time }}
+    </div>
+    <div class="mb-3">
+      <label for="id_status" class="form-label">Status</label>
+      {{ form.status }}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}

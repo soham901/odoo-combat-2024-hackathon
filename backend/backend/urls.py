@@ -6,6 +6,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+from user.views import login_view, signup_view, logout_view
+
 
 @api_view(["GET"])
 def health_check(request):
@@ -23,5 +25,11 @@ apipatterns = [
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", include(apipatterns)),
+    path("workspaces/", include("workspaces.urls")),
+    path("booking/", include("booking.urls")),
+    path("", include("home.urls")),
+    path("signup/", signup_view, name="signup"),
+    path("login/", login_view, name="login"),
+    path("logout/", logout_view, name="logout"),
+    # path("api/", include(apipatterns)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

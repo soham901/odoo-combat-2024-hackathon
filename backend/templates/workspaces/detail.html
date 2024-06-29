@@ -1,0 +1,114 @@
+{% extends 'base.html' %} {% load static %}{% block title %}{{ workspace.name }}
+- Workspace Platform{% endblock %} {% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4">{{ workspace.name }}</h1>
+  <p class="lead">{{ workspace.tagline }}</p>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div
+        id="workspaceCarousel"
+        class="carousel slide mb-4"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          {% for image in workspace.images.all %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img
+              src="{{ image.image.url }}"
+              class="d-block w-100"
+              alt="{{ workspace.name }} image {{ forloop.counter }}"
+            />
+          </div>
+          {% empty %}
+          <div class="carousel-item active">
+            <img
+              src="{% static 'images/placeholder.jpg' %}"
+              class="d-block w-100"
+              alt="Placeholder image"
+            />
+          </div>
+          {% endfor %}
+        </div>
+        {% if workspace.images.count > 1 %}
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#workspaceCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#workspaceCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        {% endif %}
+      </div>
+
+      <div class="d-flex gap-4 flex-column">
+      <div>
+        <h2 class="fw-semibold">About this workspace</h2>
+        <h4 class="fw-medium mt-2">Rules:</h4>
+        <p>{{ workspace.rules|linebreaks }}</p>
+      </div>
+
+      <div>
+        <h2 class="fw-semibold">Available Resources</h2>
+        <p>{{ workspace.rules|linebreaks }}</p>
+      </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Location</h5>
+          <p class="card-text">{{ workspace.location }}</p>
+          <p class="card-text">{{ workspace.city.name }}, {{ workspace.state.name }}</p>
+          </p>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Amenities</h5>
+          <ul class="list-group list-group-flush">
+            {% for amenity in workspace.amenities.all %}
+            <li class="list-group-item">
+              <img
+                src="{{ amenity.icon.url }}"
+                alt="{{ amenity.name }}"
+                width="20"
+                height="20"
+                class="me-2"
+                loading="lazy"
+                style="vertical-align: middle; border-radius: 50%; object-fit: cover;"
+              />
+              {{ amenity.name }}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fw-medium">About Owner</h5>
+          <p class="card-text"><span class="">{{ workspace.owner }}</span>, {{workspace.owner.organization}}</p>
+          <div class="d-grid gap-2">
+          <a href="{% url 'booking-view' workspace.slug %}" class="btn btn-primary">Book Now</a>
+          <a href="mailto:{{ workspace.owner.user.email }}" class="btn btn-success">Contact Owner</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
