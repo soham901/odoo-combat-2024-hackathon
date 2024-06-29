@@ -7,4 +7,8 @@ export const publicRoutes = [
     name: "Workspaces",
     href: "/workspaces",
   },
+  {
+    name: "About",
+    href: "/about-us",
+  },
 ];
