@@ -1,14 +1,13 @@
 from django.db import models
 
 from customer.models import Customer
-from workspaces.models import WorkSpace
 
 
 class Resource(models.Model):
-    workspace = models.OneToOneField(WorkSpace, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     quantity = models.PositiveIntegerField(default=1)
+    cost = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
         return self.name

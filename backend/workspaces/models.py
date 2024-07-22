@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 
+from resources.models import Resource
 from owner.models import Owner
 from locations.models import City, State
 
@@ -15,6 +16,7 @@ class Amenity(models.Model):
 
 class WorkSpace(models.Model):
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE, null=True)
+    resources = models.ManyToManyField(Resource)
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, null=True, blank=True)
     tagline = models.CharField(max_length=96)

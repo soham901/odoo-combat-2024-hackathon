@@ -61,7 +61,30 @@
 
       <div>
         <h2 class="fw-semibold">Available Resources</h2>
-        <p>{{ workspace.rules|linebreaks }}</p>
+        <div>
+        {% for resource in workspace.resources.all %}
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title d-flex justify-content-between">
+            <div class="">
+            {{ resource.name }}
+            </div>
+            
+            {% if resource.cost == 0 %}
+            <div class="text-success">
+            Free
+            </div>
+            {% else %}
+              <div>
+            ₹ {{ resource.cost }}
+            </div>
+            {% endif %}
+            </h5>
+            <p class="card-text">{{ resource.description }}</p>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
       </div>
       </div>
     </div>
